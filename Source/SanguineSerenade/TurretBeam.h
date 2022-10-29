@@ -4,32 +4,31 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Turret.generated.h"
+#include "TurretBeam.generated.h"
 
 UCLASS()
-class SANGUINESERENADE_API ATurret : public AActor
+class SANGUINESERENADE_API ATurretBeam : public AActor
 {
 	GENERATED_BODY()
 
-private:
 	UPROPERTY(EditAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
 		USceneComponent* Root;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-		UStaticMeshComponent* TurretMesh;
+	/** Sphere collision component */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
+		UStaticMeshComponent* ProjectileMesh;
 
+	/** Sphere collision detection */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	class UCapsuleComponent* Capsule;
+	class USphereComponent* Sphere;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	class UArrowComponent* BeamSpawner;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	class UBoxComponent* RangeBox;
+	/** Projectile movement component */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	class	UProjectileMovementComponent* ProjectileMovement;
 	
 public:	
 	// Sets default values for this actor's properties
-	ATurret();
+	ATurretBeam();
 
 protected:
 	// Called when the game starts or when spawned
