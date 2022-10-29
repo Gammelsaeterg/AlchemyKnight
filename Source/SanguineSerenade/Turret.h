@@ -16,10 +16,13 @@ private:
 		USceneComponent* Root;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-		USkeletalMeshComponent* TurretMesh;
+		UStaticMeshComponent* TurretMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCapsuleComponent* Capsule;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UArrowComponent* BeamSpawner;
 	
 public:	
 	// Sets default values for this actor's properties
