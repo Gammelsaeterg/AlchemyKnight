@@ -4,6 +4,7 @@
 #include "Turret.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/ArrowComponent.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 ATurret::ATurret()
@@ -14,11 +15,13 @@ ATurret::ATurret()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
 	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
-	Capsule->SetupAttachment(RootComponent);
+	Capsule->SetupAttachment(Root);
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TurretMesh"));
-	TurretMesh->SetupAttachment(RootComponent);
+	TurretMesh->SetupAttachment(Root);
 	BeamSpawner = CreateDefaultSubobject<UArrowComponent>(TEXT("BeamSpawner"));
 	BeamSpawner->SetupAttachment(TurretMesh);
+	RangeBox = CreateDefaultSubobject<UBoxComponent>(TEXT("RangeBox"));
+	RangeBox->SetupAttachment(TurretMesh);
 }
 
 // Called when the game starts or when spawned
